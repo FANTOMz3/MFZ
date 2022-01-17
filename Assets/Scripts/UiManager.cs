@@ -9,16 +9,17 @@ public class UiManager : MonoBehaviour
 
     public static UiManager Instance;
 
-    public void Start()
+    public void Awake()
     {
         Instance = this;
     }
 
-    public static void CloseAll()
+    public static void CloseAll(int index)
     {
-        foreach (var mechCanvas in Instance.uiMech)
+        for (int i = 0; i < Instance.uiMech.Count; i++)
         {
-            mechCanvas.CanvasClose();
+            Instance.uiMech[i].CanvasClose(index > Instance.uiMech[i].index);
         }
+
     }
 }

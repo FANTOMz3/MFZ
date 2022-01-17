@@ -7,6 +7,9 @@ using UnityEngine.UIElements;
 
 public class MechCanvas : MonoBehaviour
 {
+
+    public Mech myMech;
+    
     private List<RectTransform> _buttons = new List<RectTransform>();
 
     [SerializeField] private Vector2 startPos;
@@ -89,5 +92,11 @@ public class MechCanvas : MonoBehaviour
         });
         
         if (reverse) _buttons.Reverse();
+    }
+
+    public void Destroy()
+    {
+        // TODO: Анимация уничтожения
+        Destroy(gameObject);
     }
 }

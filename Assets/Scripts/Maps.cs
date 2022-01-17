@@ -22,7 +22,7 @@ public class Maps : MonoBehaviour
 
     void RemoveAll()
     {
-        for (int i = transform.childCount - 1; i > 0; i--)
+        for (int i = transform.childCount - 1; i >= 0; i--)
         {
             DestroyImmediate(transform.GetChild(i).gameObject);
         }
@@ -30,6 +30,7 @@ public class Maps : MonoBehaviour
 
     private void CreateMap()
     {
+        if (!(Application.IsPlaying(this) | transform.childCount != size.x * size.y)) return;
         RemoveAll();
         for (int x = 0; x < size.x; x++)
         {

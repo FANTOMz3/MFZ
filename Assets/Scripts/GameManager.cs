@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static GameManager Instance;
+
+    public GameObject prototypePrefab;
+
+    private void Awake()
     {
-        
+        Instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    public static void NewMech(Slot slot)
     {
-        
+        var newMech = slot.NewMech(Instance.prototypePrefab);
+        if (newMech is null) return;
+        UiManager.NewMech(newMech);
     }
+
+
 }

@@ -11,7 +11,7 @@ public class UiManager : MonoBehaviour
 
     public Transform mechList;
     public GameObject mechControlPrefab;
-    
+
 
     public void Awake()
     {
@@ -24,9 +24,8 @@ public class UiManager : MonoBehaviour
         {
             Instance.uiMech[i].CanvasClose(index > Instance.uiMech[i].index);
         }
-
     }
-    
+
     public static void NewMech(Mech newMech)
     {
         var mc = Instantiate(Instance.mechControlPrefab, Instance.mechList).GetComponent<MechCanvas>();
@@ -36,11 +35,7 @@ public class UiManager : MonoBehaviour
 
     public static void RemoveMech(Mech removedMech)
     {
-        for (int i = 0; i < Instance.uiMech.Count; i++)
-        {
-            if (!(Instance.uiMech[i].myMech == removedMech)) continue;
-            Instance.uiMech[i].Destroy();
-            break;
-        }
+        var menu = removedMech.myMenu;
+        menu.Destroy();
     }
 }

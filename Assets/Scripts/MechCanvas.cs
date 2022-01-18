@@ -16,6 +16,8 @@ public class MechCanvas : MonoBehaviour
     [SerializeField] private float radius;
     [SerializeField] private float angle = .167f;
 
+    private Animation myAnim;
+
     public int index;
     
     public bool _iMoving;
@@ -30,6 +32,7 @@ public class MechCanvas : MonoBehaviour
         }
 
         index = transform.GetSiblingIndex();
+        myAnim = transform.GetComponent<Animation>();
     }
 
     private void Start()
@@ -56,6 +59,7 @@ public class MechCanvas : MonoBehaviour
     {
         if (_iMoving) return;
 
+        ButtonsSetActive(true);
         _iMoving = true;
         var inSeq = DOTween.Sequence();
         for (int i = 0; i < _buttons.Count; i++)
@@ -89,6 +93,7 @@ public class MechCanvas : MonoBehaviour
         {
             _iMoving = false;
             isOpen = false;
+            ButtonsSetActive(false);
         });
         
         if (reverse) _buttons.Reverse();
@@ -96,7 +101,21 @@ public class MechCanvas : MonoBehaviour
 
     public void Destroy()
     {
-        // TODO: Анимация уничтожения
+        myAnim.Play("Mech control OFF");
+        StartCoroutine(DestroyInSecond());
+    }
+
+    private IEnumerator DestroyInSecond()
+    {
+        yield return new WaitForSeconds(1f);
         Destroy(gameObject);
+    }
+
+    private void ButtonsSetActive(bool state)
+    {
+        foreach (var b in _buttons)
+        {
+            b.gameObject.SetActive(state);
+        }
     }
 }

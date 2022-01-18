@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1116059965149126038}
   - component: {fileID: 1116059965149126041}
   - component: {fileID: 1116059965149126042}
+  - component: {fileID: 7917110099346500228}
   m_Layer: 0
   m_Name: Mech Menu Element
   m_TagString: Untagged
@@ -145,6 +146,23 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!111 &7917110099346500228
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116059965149126036}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 35084031a7bbf704da11df35455009a6, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 35084031a7bbf704da11df35455009a6, type: 2}
+  - {fileID: 7400000, guid: d8f4919b7fce51740af233c7937363de, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1116059965532025111
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,7 +219,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1116059965761059187
 RectTransform:
   m_ObjectHideFlags: 0
@@ -472,7 +490,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1116059965905835398
 RectTransform:
   m_ObjectHideFlags: 0
@@ -593,7 +611,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1116059966245441014
 RectTransform:
   m_ObjectHideFlags: 0

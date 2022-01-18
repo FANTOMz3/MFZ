@@ -20,5 +20,12 @@ public class GameManager : MonoBehaviour
         UiManager.NewMech(newMech);
     }
 
+    public static void DestroyMech(Mech mech)
+    {
+        var menu = mech.myMenu;
+        menu.Destroy();
+        mech.Destroy();
+    }
+
 
 }

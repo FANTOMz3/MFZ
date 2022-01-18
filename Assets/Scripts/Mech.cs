@@ -10,6 +10,11 @@ public class Mech : MonoBehaviour
 
     private void OnMouseDown()
     {
-        myMenu.ToggleUi();
+        GameManager.DestroyMech(this);
+    }
+
+    public void Destroy()
+    {
+        Destroy(gameObject);
     }
 }

@@ -29327,11 +29327,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29dc563e46671664d90593703cf2661e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  centerPos: {x: 0, y: 0, z: 0}
-  rotateSensitivity: 5
-  moveSensitivity: 0.5
-  wheelSensitivity: 0.5
-  distance: 8
+  xRotateSensitivity: 5
+  yRotateSensitivity: 5
+  moveSpeed: 0.02
 --- !u!1 &966192266
 GameObject:
   m_ObjectHideFlags: 0

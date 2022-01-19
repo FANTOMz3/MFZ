@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -8,9 +9,16 @@ public class GameManager : MonoBehaviour
 
     public GameObject prototypePrefab;
 
+    [CanBeNull] public Mech mechToMove;
+
     private void Awake()
     {
         Instance = this;
+    }
+
+    public static void SetMechToMove(Mech mech)
+    {
+        Instance.mechToMove = mech;
     }
 
     public static void NewMech(Slot slot)
@@ -20,5 +28,20 @@ public class GameManager : MonoBehaviour
         UiManager.NewMech(newMech);
     }
 
+    public static void DestroyMech(Mech removedMech)
+    {
+        if (Instance.mechToMove == removedMech) Instance.mechToMove = null;
+        UiManager.RemoveMech(removedMech);
+        removedMech.Destroy();
+    }
+
+    public static void SlotClick(Slot slot)
+    {
+        if (Instance.mechToMove != null) {
+            Instance.mechToMove.Move(slot);
+            Instance.mechToMove = null; 
+            return;}
+        if (slot.mech == null) {NewMech(slot);}
+    }
 
 }

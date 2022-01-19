@@ -131,4 +131,20 @@ public class MechCanvas : MonoBehaviour
     {
         transform.GetComponentInChildren<Text>().text = myMech.name;
     }
+
+    public void MechInfo()
+    {
+        Debug.Log("Open info window");
+    }
+
+    public void MoveMech()
+    {
+        Debug.Log("Move mech");
+        GameManager.SetMechToMove(myMech);
+    }
+
+    public void MechInventory()
+    {
+        Debug.Log("Open inventory window");
+    }
 }

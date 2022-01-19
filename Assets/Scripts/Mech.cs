@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class Mech : MonoBehaviour
 {
-    public String name;
+    public String name = "Mech";
 
     public MechCanvas myMenu;
 
@@ -25,11 +26,28 @@ public class Mech : MonoBehaviour
     
     private void OnMouseDown()
     {
-        GameManager.DestroyMech(this);
+        myMenu.ToggleUi();
     }
 
     public void Destroy()
     {
         Destroy(gameObject);
+    }
+
+    public void Move(Slot slot)
+    {
+        if (slot.mech != null) return;
+        
+        transform.SetParent(slot.transform);
+        slot.mech = this;
+
+        // var origRot = transform.rotation;
+        // transform.LookAt(new Vector3(slot.transform.position.x, 2, slot.transform.position.z), Vector3.left);
+        // var newRot = transform.rotation;
+        // transform.rotation = origRot;
+
+        var moveSeq = DOTween.Sequence();
+        // moveSeq.Append(transform.DORotate(newRot.eulerAngles, 1f));
+        moveSeq.Append(transform.DOLocalMove(Vector3.up * 0.5f, 1f).SetEase(Ease.Linear));
     }
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class Mech : MonoBehaviour
@@ -10,6 +11,8 @@ public class Mech : MonoBehaviour
     public String name = "Mech";
 
     public MechCanvas myMenu;
+
+    [SerializeField] private Text serialNumber;
 
     private void Start()
     {
@@ -21,6 +24,7 @@ public class Mech : MonoBehaviour
     public void SetName(string newName)
     {
         name = newName;
+        serialNumber.text = name;
         myMenu.UpdateName();
     }
     

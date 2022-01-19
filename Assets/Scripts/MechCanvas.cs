@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class MechCanvas : MonoBehaviour
 {
-
     public Mech myMech;
-    
+
     private List<RectTransform> _buttons = new List<RectTransform>();
 
     [SerializeField] private Vector2 startPos;
@@ -19,7 +19,7 @@ public class MechCanvas : MonoBehaviour
     private Animation myAnim;
 
     public int index;
-    
+
     public bool _iMoving;
     public bool isOpen;
 
@@ -40,10 +40,12 @@ public class MechCanvas : MonoBehaviour
         UiManager.Instance.uiMech.Add(this);
     }
 
+    #region Animation
+
     public void ToggleUi()
     {
         if (_iMoving) return;
-        
+
         if (isOpen)
         {
             UiManager.CloseAll(index);
@@ -81,9 +83,9 @@ public class MechCanvas : MonoBehaviour
         if (_iMoving) return;
         _iMoving = true;
         var inSeq = DOTween.Sequence();
-        
+
         if (reverse) _buttons.Reverse();
-        
+
         foreach (var button in _buttons)
         {
             inSeq.Append(button.DOLocalMove(startPos, .2f));
@@ -95,8 +97,20 @@ public class MechCanvas : MonoBehaviour
             isOpen = false;
             ButtonsSetActive(false);
         });
-        
+
         if (reverse) _buttons.Reverse();
+    }
+
+    #endregion
+
+    #region Destroy
+
+    private void ButtonsSetActive(bool state)
+    {
+        foreach (var b in _buttons)
+        {
+            b.gameObject.SetActive(state);
+        }
     }
 
     public void Destroy()
@@ -111,11 +125,10 @@ public class MechCanvas : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void ButtonsSetActive(bool state)
+    #endregion
+
+    public void UpdateName()
     {
-        foreach (var b in _buttons)
-        {
-            b.gameObject.SetActive(state);
-        }
+        transform.GetComponentInChildren<Text>().text = myMech.name;
     }
 }
